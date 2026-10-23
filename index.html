@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Welcome ItzFizz – Scroll-Driven Hero</title>
+<meta name="theme-color" content="#07080d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%9A%97%3C/text%3E%3C/svg%3E">
+<meta name="description" content="Scroll-driven hero animation: a supercar drives across the screen as you scroll. HTML, CSS, JavaScript, GSAP and Tailwind.">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/main.js" defer></script>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<main class="track" id="track">
+  <section class="stage" id="stage">
+    <div class="ground"><div class="dots d1" id="d1"></div><div class="dots d2" id="d2"></div></div>
+    <div class="speedlines" id="sl"></div>
+
+    <!-- Ghost layer: dim outline text. A bright clone (#bright) is revealed behind the car. -->
+    <div class="content" id="ghost">
+      <h1 class="headline" aria-label="Welcome ItzFizz">WELCOME ITZFIZZ</h1>
+      <div class="stats">
+        <div class="stat"><b data-count="58" data-suf="%">58%</b><span>Increase in pick up point use</span></div>
+        <div class="stat"><b data-count="23" data-suf="%">23%</b><span>Decreased in customer phone calls</span></div>
+        <div class="stat"><b data-count="27" data-suf="%">27%</b><span>Increase in pick up point use</span></div>
+        <div class="stat"><b data-count="40" data-suf="%">40%</b><span>Decreased in customer phone calls</span></div>
+      </div>
+    </div>
+
+    <div class="road"><div class="lanes" id="lanes"><i class="l1"></i><i class="l2"></i><i class="l3"></i></div></div>
+    <div id="trail"></div>
+    <div class="content bright" id="bright" aria-hidden="true"></div>
+    <div id="edge"></div>
+
+    <div id="carWrap">
+      <div class="underglow" id="underglow"></div>
+      <svg id="car" viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="bodyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c93a00"/><stop offset="1" stop-color="#ff9242"/></linearGradient>
+          <linearGradient id="beamG" x1="0" x2="1"><stop offset="0" stop-color="#eaffb0" stop-opacity=".55"/><stop offset="1" stop-color="#c6ff3d" stop-opacity="0"/></linearGradient>
+          <g id="beams"><polygon points="372,58 660,24 660,92" fill="url(#beamG)"/></g>
+          <g id="wheels"><rect x="266" y="10" width="56" height="26" rx="8" fill="#0a0b10"/><rect x="54" y="8" width="64" height="30" rx="9" fill="#0a0b10"/></g>
+          <g id="half">
+            <path d="M14 80 L14 58 Q16 46 34 42 L96 38 Q140 34 190 33 L272 36 Q340 42 380 66 Q388 72 388 80 Z" fill="url(#bodyG)"/>
+            <path d="M34 42 L96 38 Q140 34 190 33 L272 36" fill="none" stroke="#c6ff3d" stroke-width="1.6" opacity=".85"/>
+            <path d="M150 80 L160 58 Q176 50 206 50 L246 54 Q262 58 270 80 Z" fill="#0f121b"/>
+            <path d="M96 44 L132 42 L132 50 L100 52 Z" fill="#7a2200"/>
+            <path d="M246 36 L258 27 L266 37 Z" fill="#a82f00"/>
+            <path d="M338 50 L368 61 L350 63 Z" fill="#fff"/>
+            <rect x="14" y="50" width="5" height="11" rx="1" fill="#ff2e5b"/>
+          </g>
+        </defs>
+        <g id="beamsG"><use href="#beams"/><use href="#beams" transform="translate(0,160) scale(1,-1)"/></g>
+        <use href="#wheels"/><use href="#wheels" transform="translate(0,160) scale(1,-1)"/>
+        <rect x="6" y="40" width="12" height="80" rx="3" fill="#0d0f16"/>
+        <use href="#half"/><use href="#half" transform="translate(0,160) scale(1,-1)"/>
+        <rect x="24" y="77" width="362" height="6" fill="#0d0f16" opacity=".5"/>
+        <rect x="168" y="68" width="82" height="24" rx="7" fill="#262b3b"/>
+      </svg>
+    </div>
+
+    <div class="hint"><span>Scroll to drive</span><i></i></div>
+    <div class="hud"><span id="speed">000</span><small>km/h</small></div>
+  </section>
+</main>
+
+<section class="finale">
+  <p class="reveal text-sm uppercase tracking-[.4em]" style="color:var(--accent)">Finish line</p>
+  <h2 class="reveal">Motion that<br>feels alive.</h2>
+  <p class="reveal sub">Scroll back up and the car reverses all the way to the start.</p>
+</section>
+</body>
+</html>
